@@ -1,0 +1,205 @@
+[
+    {
+        "routeNumber": "100",
+        "routeName": "Fort - Panadura",
+        "places": [
+            "Fort",
+            "Galle Face",
+            "Kollupitiya",
+            "Bambalapitiya",
+            "Wellawatte",
+            "Dehiwala",
+            "Mount-Lavinia",
+            "Ratmalana",
+            "Angulana",
+            "Katubedda",
+            "Rawatawatta",
+            "Moratuwa",
+            "Horethuduwa",
+            "Gorakana",
+            "Keselwatta",
+            "Panadura"
+        ],
+        "imageUrl": "../../assets/images/177/177_bus.jpg"
+    },
+    {
+        "routeNumber": "101",
+        "routeName": "Fort - Moratuwa",
+        "places": [
+            "Fort",
+            "Slave Island",
+            "Gangaramaya",
+            "Kollupitiya",
+            "Bambalapitiya",
+            "Wellawatte",
+            "Dehiwala",
+            "Mount-Lavinia",
+            "Ratmalana",
+            "Angulana",
+            "Katubedda",
+            "Rawatawatta",
+            "Moratuwa"
+        ],
+        "imageUrl": "../../assets/images/177/177_bus.jpg"
+    },
+    {
+        "routeNumber": "177",
+        "routeName": "Kollupitiya - Kaduwela",
+        "places": [
+            "Kollupitiya",
+            "Library",
+            "Nelum Pokuna",
+            "Horton Place",
+            "Borella",
+            "Rajagiriya",
+            "Battaramulla",
+            "Thalahena",
+            "Koswatta",
+            "Malabe",
+            "Pittugala",
+            "SLIIT",
+            "Kotalawala",
+            "Highway Entrance",
+            "Kaduwela"
+        ],
+        "imageUrl": "../../assets/images/177/177_bus.jpg"
+    },
+    {
+        "routeNumber": "100",
+        "routeName": "Fort - Moratuwa",
+        "places": [
+            "Fort",
+            "Galle Face",
+            "Kollupitiya",
+            "Bambalapitiya",
+            "Wellawatte",
+            "Dehiwala",
+            "Mount-Lavinia",
+            "Ratmalana",
+            "Angulana",
+            "Katubedda",
+            "Rawatawatta",
+            "Moratuwa"
+        ],
+        "imageUrl": "../../assets/images/177/177_bus.jpg"
+    },
+    {
+        "routeNumber": "102",
+        "routeName": "Kotahena - Angulana",
+        "places": [
+            "Kotahena",
+            "Kochchikade",
+            "Fort",
+            "Galle Face",
+            "Kollupitiya",
+            "Bambalapitiya",
+            "Wellawatte",
+            "Dehiwala",
+            "Mount-Lavinia",
+            "Ratmalana",
+            "Angulana"
+        ],
+        "imageUrl": "../../assets/images/177/177_bus.jpg"
+    },
+    {
+        "routeNumber": "103",
+        "routeName": "Fort - Park Avenue",
+        "places": [
+            "Fort",
+            "Pettah",
+            "Technical College Junction",
+            "Maradana",
+            "Punchi Borella",
+            "Borella",
+            "Kanatta Junction",
+            "Narahenpita",
+            "Park Avenue"
+        ],
+        "imageUrl": "../../assets/images/177/177_bus.jpg"
+    },
+    {
+        "routeNumber": "104",
+        "routeName": "Bambalapitiya - Ja-Ela",
+        "places": [
+            "Bambalapitiya",
+            "Thummulla",
+            "Bauddhaloka Mawatha",
+            "Kanatta Junction",
+            "Borella",
+            "Dematagoda",
+            "Orugodawatta",
+            "New Kelani Bridge",
+            "Peliyagoda",
+            "Wattala",
+            "Ja-Ela"
+        ],
+        "imageUrl": "../../assets/images/177/177_bus.jpg"
+    },
+    {
+        "routeNumber": "112",
+        "routeName": "Maharagama - Kotahena",
+        "places": [
+            "Kotahena",
+            "Kochchikade",
+            "Fort",
+            "Galle Face",
+            "Kollupitiya",
+            "Bambalapitiya",
+            "Dickmans Road",
+            "Havelock Town",
+            "Kirillapone",
+            "Nugegoda",
+            "Delkanda",
+            "Navinna",
+            "Maharagama"
+        ],
+        "imageUrl": "../../assets/images/177/177_bus.jpg"
+    },
+    {
+        "routeNumber": "113",
+        "routeName": "Fort - Udahamulla",
+        "places": [
+            "Fort",
+            "Lake House",
+            "D.R. Wijewardhana Road",
+            "Gamini Hall Junction",
+            "Darley Road",
+            "Ibbanwala Junction",
+            "Town Hall",
+            "Cinnamon Gardens",
+            "Independence Square",
+            "Torrington Avenue",
+            "Thimbirigasyaya",
+            "Havelock Town",
+            "Kirillapone",
+            "Mirihana",
+            "Embuldeniya Junction",
+            "Udahamulla"
+        ],
+        "imageUrl": "../../assets/images/177/177_bus.jpg"
+    },
+    {
+        "routeNumber": "154",
+        "routeName": "Angulana - Kiribathgoda",
+        "places": [
+            "Kiribathgoda",
+            "Kelaniya",
+            "Peliyagoda",
+            "Orugodawatta",
+            "Dematagoda",
+            "Borella",
+            "Kanatta Junction",
+            "Bauddhaloka Mawatha",
+            "BMICH",
+            "Jawatta Road",
+            "Thummulla",
+            "Bambalapitiya",
+            "Wellawatte",
+            "Dehiwala",
+            "Mount-Lavinia",
+            "Ratmalana",
+            "Angulana"
+        ],
+        "imageUrl": "../../assets/images/177/177_bus.jpg"
+    }
+]
