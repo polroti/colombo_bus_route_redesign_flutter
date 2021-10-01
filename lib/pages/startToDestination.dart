@@ -1,11 +1,13 @@
 import 'dart:convert';
 
 import 'package:colombo_bus_route_redesign_flutter/data/destinations.dart';
+import 'package:search_choices/search_choices.dart';
+
 import 'package:colombo_bus_route_redesign_flutter/pages/routeDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-import 'package:searchable_dropdown/searchable_dropdown.dart';
+//import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class StartToDestinationPage extends StatefulWidget {
   StartToDestinationPage({Key key}) : super(key: key);
@@ -98,8 +100,10 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
           SizedBox(
             height: 15,
           ),
-          SearchableDropdown.single(
+          SearchChoices.single(
               isExpanded: true,
+              value:
+                  this.start == "" || this.start == null ? "Start" : this.start,
               items: destinations.map((e) {
                 return (DropdownMenuItem(
                   child: Text(e),
@@ -113,7 +117,7 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
                   this.start = value.toString();
                 });
               }),
-          SearchableDropdown.single(
+          SearchChoices.single(
               isExpanded: true,
               items: destinations.map((e) {
                 return (DropdownMenuItem(
@@ -122,6 +126,7 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
                 ));
               }).toList(),
               hint: "End",
+              value: this.end == "" || this.end == null ? "End" : this.end,
               searchHint: "End",
               onChanged: (value) {
                 setState(() {
@@ -130,17 +135,19 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
               }),
           ElevatedButton.icon(
               onPressed: () {
-                data.forEach((element) {
-                  print(start);
-                  print(end);
+                if (!(this.searchResults.length > 1)) {
+                  data.forEach((element) {
+                    print(start);
+                    print(end);
 
-                  if (element['places'].contains(this.start) &&
-                      element['places'].contains(this.end)) {
-                    setState(() {
-                      this.searchResults.add(element);
-                    });
-                  }
-                });
+                    if (element['places'].contains(this.start) &&
+                        element['places'].contains(this.end)) {
+                      setState(() {
+                        this.searchResults.add(element);
+                      });
+                    }
+                  });
+                }
                 print(this.searchResults.length.toString());
               },
               icon: Icon(Icons.search_outlined),
@@ -148,10 +155,9 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
           SizedBox(
             height: 15,
           ),
-          Divider(),
           Visibility(
               visible: this.searchResults.length > 0,
-              child: Container(
+              child: SingleChildScrollView(
                 child: Column(
                   children: listOfResults(),
                 ),
@@ -164,7 +170,7 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
   }
 
   List<Widget> listOfResults() {
-    List<Widget> widgetList = [];
+    List<Widget> widgetList = [Divider()];
 
     if (this.searchResults.length > 0) {
       this.searchResults.forEach((element) {
@@ -172,8 +178,9 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
         widgetList.add(ListTile(
           title: Text(element['routeNumber']),
           subtitle: Text(element['routeName']),
-          trailing: TextButton(
-            child: Text("DETAILS"),
+          trailing: ElevatedButton.icon(
+            icon: Icon(Icons.info),
+            label: Text("DETAILS"),
             onPressed: () {
               {
                 Navigator.push(

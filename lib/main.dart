@@ -1,4 +1,6 @@
+import 'package:colombo_bus_route_redesign_flutter/pages/busesInCurrentPlace.dart';
 import 'package:colombo_bus_route_redesign_flutter/pages/currentPlaceToDestination.dart';
+import 'package:colombo_bus_route_redesign_flutter/pages/routeNumber.dart';
 import 'package:colombo_bus_route_redesign_flutter/pages/startToDestination.dart';
 import 'package:flutter/material.dart';
 
@@ -34,8 +36,8 @@ class _BottomNavigationContainerState extends State<BottomNavigationContainer> {
   List<Widget> tabs = [
     StartToDestinationPage(),
     CurrentPlaceToDestination(),
-    StartToDestinationPage(),
-    StartToDestinationPage()
+    RouteNumberPage(),
+    BusesInCurrentPlace()
   ];
   onTapped(int index) {
     setState(() {

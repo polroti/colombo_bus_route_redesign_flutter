@@ -2,7 +2,8 @@ import 'package:colombo_bus_route_redesign_flutter/data/destinations.dart';
 import 'package:colombo_bus_route_redesign_flutter/pages/routeDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'package:searchable_dropdown/searchable_dropdown.dart';
+import 'package:search_choices/search_choices.dart';
+//import 'package:searchable_dropdown/searchable_dropdown.dart';
 import 'dart:async' show Future;
 import 'package:flutter/services.dart' show rootBundle;
 import 'dart:convert';
@@ -20,6 +21,7 @@ class CurrentPlaceToDestination extends StatefulWidget {
 class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
   String start;
   String end;
+  String selectedEnd = "End";
   bool locationPermissionStatus = false;
   final List<DropdownMenuItem> items = [];
   List searchResults = [];
@@ -94,6 +96,16 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
     getLocationPermissonFromSharedPref();
   }
 
+  _incrementCounter() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    bool counter = prefs.getBool('loc');
+    setState(() {
+      this.locationPermission = counter;
+    });
+    //print('Pressed $counter times.');
+    //await prefs.setInt('counter', counter);
+  }
+
   @override
   void initState() {
     super.initState();
@@ -164,7 +176,7 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
                   SizedBox(
                     height: 30,
                   ),
-                  SearchableDropdown.single(
+                  SearchChoices.single(
                       isExpanded: true,
                       items: destinations.map((e) {
                         return (DropdownMenuItem(
@@ -172,7 +184,9 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
                           value: e,
                         ));
                       }).toList(),
-                      hint: "End",
+                      hint: "End Stop",
+                      value:
+                          this.end == "" || this.end == null ? "End" : this.end,
                       searchHint: "End",
                       onChanged: (value) {
                         setState(() {
@@ -209,7 +223,9 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
             Visibility(
                 child: Center(
                   child: Column(
-                    children: <Widget>[Text("Enna kadhe")],
+                    children: <Widget>[
+                      Text("Please allow location permission")
+                    ],
                   ),
                 ),
                 visible: !locationPermissionStatus)

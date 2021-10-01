@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.colombo_bus_route_redesign_flutter">
    <application
-        android:label="colombo_bus_route_redesign_flutter"
+        android:label="Colombo Bus Route"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
