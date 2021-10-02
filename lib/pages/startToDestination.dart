@@ -7,7 +7,6 @@ import 'package:colombo_bus_route_redesign_flutter/pages/routeDetails.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
-//import 'package:searchable_dropdown/searchable_dropdown.dart';
 
 class StartToDestinationPage extends StatefulWidget {
   StartToDestinationPage({Key key}) : super(key: key);
@@ -17,57 +16,9 @@ class StartToDestinationPage extends StatefulWidget {
 }
 
 class _StartToDestinationPageState extends State<StartToDestinationPage> {
-  int _counter = 0;
   String start;
   String end;
   final List<DropdownMenuItem> items = [];
-  final destinations = [
-    "Athurugiriya",
-    "Bambalapitiya",
-    "Battaramulla",
-    "Batuwatta",
-    "Bloemendhal",
-    "Boralesgamuwa",
-    "Borella",
-    "Cinnamon Gardens",
-    "Dalugama",
-    "Dehiwala",
-    "Dematagoda",
-    "Fort",
-    "Grandpass",
-    "Havelock Town",
-    "Hokandara",
-    "Hulftsdorp",
-    "Ja Ela",
-    "Kadawatha",
-    "Kaduwela",
-    "Kahathuduwa",
-    "Kalubowila",
-    "Kandana",
-    "Kiribathgoda",
-    "Kirulapana",
-    "Kohuwala",
-    "Kollupitiya",
-    "Kolonnawa",
-    "Koswatte",
-    "Kotahena",
-    "Kotikawatta",
-    "Kottawa",
-    "Madampitiya",
-    "Maha Nuge Gardens",
-    "Maharagama",
-    "Malabe",
-    "Maligawatta",
-    "Maradana",
-    "Mattakkuliya",
-    "Modara",
-    "Moratuwa",
-    "Mount Lavinia",
-    "Narahenpita",
-    "Nawala",
-    "Nugegoda",
-    "Wellawatte"
-  ];
   List searchResults = [];
   List data;
 
@@ -87,6 +38,108 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
     this.callLoadJson();
   }
 
+  Widget startInput() {
+    return Card(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          side: BorderSide(color: Colors.grey, width: 1.0)),
+      margin: EdgeInsets.all(20.0),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: <Widget>[
+            SearchChoices.single(
+                searchInputDecoration: InputDecoration(
+                    enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(10.0),
+                        borderSide: BorderSide(color: Colors.blueAccent))),
+                isExpanded: true,
+                value: this.start == "" || this.start == null
+                    ? "Start"
+                    : this.start,
+                items: destinations.map((e) {
+                  return (DropdownMenuItem(
+                    child: Text(e),
+                    value: e,
+                  ));
+                }).toList(),
+                hint: "Start",
+                searchHint: "Start",
+                onChanged: (value) {
+                  setState(() {
+                    this.start = value.toString();
+                  });
+                })
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget endInput() {
+    return Card(
+      shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(10.0),
+          side: BorderSide(color: Colors.grey, width: 1.0)),
+      margin: EdgeInsets.all(20.0),
+      child: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          children: <Widget>[
+            SearchChoices.single(
+                isExpanded: true,
+                items: destinations.map((e) {
+                  return (DropdownMenuItem(
+                    child: Text(e),
+                    value: e,
+                  ));
+                }).toList(),
+                hint: "End",
+                value: this.end == "" || this.end == null ? "End" : this.end,
+                searchHint: "End",
+                onChanged: (value) {
+                  setState(() {
+                    this.end = value.toString();
+                  });
+                })
+          ],
+        ),
+      ),
+    );
+  }
+
+  Widget searchButton() {
+    return ElevatedButton.icon(
+        onPressed: () {
+          if (!(this.searchResults.length > 1)) {
+            data.forEach((element) {
+              print(start);
+              print(end);
+
+              if (element['places'].contains(this.start) &&
+                  element['places'].contains(this.end)) {
+                setState(() {
+                  this.searchResults.add(element);
+                });
+              }
+            });
+          }
+          print(this.searchResults.length.toString());
+        },
+        icon: Icon(Icons.search_outlined),
+        label: Text("FIND BUS ROUTES"));
+  }
+
+  Widget resultList() {
+    return Visibility(
+        visible: this.searchResults.length > 0,
+        child: SingleChildScrollView(
+          child: Column(
+            children: listOfResults(),
+          ),
+        ));
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -94,78 +147,19 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
         title: Text("Find Bus Route"),
       ),
       body: Column(
-//        mainAxisAlignment: MainAxisAlignment.center,
-
         children: <Widget>[
           SizedBox(
             height: 15,
           ),
-          SearchChoices.single(
-              isExpanded: true,
-              value:
-                  this.start == "" || this.start == null ? "Start" : this.start,
-              items: destinations.map((e) {
-                return (DropdownMenuItem(
-                  child: Text(e),
-                  value: e,
-                ));
-              }).toList(),
-              hint: "Start",
-              searchHint: "Start",
-              onChanged: (value) {
-                setState(() {
-                  this.start = value.toString();
-                });
-              }),
-          SearchChoices.single(
-              isExpanded: true,
-              items: destinations.map((e) {
-                return (DropdownMenuItem(
-                  child: Text(e),
-                  value: e,
-                ));
-              }).toList(),
-              hint: "End",
-              value: this.end == "" || this.end == null ? "End" : this.end,
-              searchHint: "End",
-              onChanged: (value) {
-                setState(() {
-                  this.end = value.toString();
-                });
-              }),
-          ElevatedButton.icon(
-              onPressed: () {
-                if (!(this.searchResults.length > 1)) {
-                  data.forEach((element) {
-                    print(start);
-                    print(end);
-
-                    if (element['places'].contains(this.start) &&
-                        element['places'].contains(this.end)) {
-                      setState(() {
-                        this.searchResults.add(element);
-                      });
-                    }
-                  });
-                }
-                print(this.searchResults.length.toString());
-              },
-              icon: Icon(Icons.search_outlined),
-              label: Text("FIND BUS ROUTES")),
+          startInput(),
+          endInput(),
+          searchButton(),
           SizedBox(
             height: 15,
           ),
-          Visibility(
-              visible: this.searchResults.length > 0,
-              child: SingleChildScrollView(
-                child: Column(
-                  children: listOfResults(),
-                ),
-              )),
+          resultList(),
         ],
       ),
-
-      // This trailing comma makes auto-formatting nicer for build methods.
     );
   }
 

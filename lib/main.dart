@@ -5,10 +5,10 @@ import 'package:colombo_bus_route_redesign_flutter/pages/startToDestination.dart
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ColomboBusRouteApp());
 }
 
-class MyApp extends StatelessWidget {
+class ColomboBusRouteApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -16,15 +16,13 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: BottomNavigationContainer(title: 'Flutter Demo Home Page'),
+      home: BottomNavigationContainer(),
     );
   }
 }
 
 class BottomNavigationContainer extends StatefulWidget {
-  BottomNavigationContainer({Key key, this.title}) : super(key: key);
-
-  final String title;
+  BottomNavigationContainer({Key key}) : super(key: key);
 
   @override
   _BottomNavigationContainerState createState() =>
@@ -57,15 +55,12 @@ class _BottomNavigationContainerState extends State<BottomNavigationContainer> {
         onTap: onTapped,
         currentIndex: currentTabIndex,
         items: [
+          BottomNavigationBarItem(icon: Icon(Icons.directions_outlined)),
+          BottomNavigationBarItem(icon: Icon(Icons.location_on_outlined)),
+          BottomNavigationBarItem(icon: Icon(Icons.looks_one_outlined)),
           BottomNavigationBarItem(
-              icon: Icon(Icons.directions_outlined), title: Text("Find")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.location_on_outlined), title: Text("From Here")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.looks_one_outlined), title: Text("Route")),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.directions_bus_outlined),
-              title: Text("Buses Here"))
+            icon: Icon(Icons.directions_bus_outlined),
+          )
         ],
       ),
     );
