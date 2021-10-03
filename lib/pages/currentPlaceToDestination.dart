@@ -96,16 +96,6 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
     getLocationPermissonFromSharedPref();
   }
 
-  _incrementCounter() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    bool counter = prefs.getBool('loc');
-    setState(() {
-      this.locationPermission = counter;
-    });
-    //print('Pressed $counter times.');
-    //await prefs.setInt('counter', counter);
-  }
-
   @override
   void initState() {
     super.initState();
@@ -194,20 +184,22 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
                         });
                       }),
                   ElevatedButton.icon(
-                      onPressed: () {
-                        data.forEach((element) {
-                          print(start);
-                          print(end);
+                      onPressed: this.start == null && this.end == null
+                          ? null
+                          : () {
+                              data.forEach((element) {
+                                print(start);
+                                print(end);
 
-                          if (element['places'].contains(this.start) &&
-                              element['places'].contains(this.end)) {
-                            setState(() {
-                              this.searchResults.add(element);
-                            });
-                          }
-                        });
-                        print(this.searchResults.length.toString());
-                      },
+                                if (element['places'].contains(this.start) &&
+                                    element['places'].contains(this.end)) {
+                                  setState(() {
+                                    this.searchResults.add(element);
+                                  });
+                                }
+                              });
+                              print(this.searchResults.length.toString());
+                            },
                       icon: Icon(Icons.search),
                       label: Text("FIND BUS ROUTES")),
                   Visibility(

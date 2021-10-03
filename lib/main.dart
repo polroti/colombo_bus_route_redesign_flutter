@@ -55,12 +55,14 @@ class _BottomNavigationContainerState extends State<BottomNavigationContainer> {
         onTap: onTapped,
         currentIndex: currentTabIndex,
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.directions_outlined)),
-          BottomNavigationBarItem(icon: Icon(Icons.location_on_outlined)),
-          BottomNavigationBarItem(icon: Icon(Icons.looks_one_outlined)),
           BottomNavigationBarItem(
-            icon: Icon(Icons.directions_bus_outlined),
-          )
+              icon: Icon(Icons.directions_outlined), label: "Find"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.location_on_outlined), label: "From Here"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.looks_one_outlined), label: "Route"),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.directions_bus_outlined), label: "Buses Here")
         ],
       ),
     );

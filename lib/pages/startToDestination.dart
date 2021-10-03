@@ -20,6 +20,54 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
   String end;
   final List<DropdownMenuItem> items = [];
   List searchResults = [];
+  final destinations = [
+    "Athurugiriya",
+    "Bambalapitiya",
+    "Battaramulla",
+    "Batuwatta",
+    "Bloemendhal",
+    "Boralesgamuwa",
+    "Borella",
+    "Cinnamon Gardens",
+    "Dalugama",
+    "Dehiwala",
+    "Dematagoda",
+    "Fort",
+    "Grandpass",
+    "Havelock Town",
+    "Hokandara",
+    "Hulftsdorp",
+    "Ja Ela",
+    "Kadawatha",
+    "Kaduwela",
+    "Kahathuduwa",
+    "Kalubowila",
+    "Kandana",
+    "Kiribathgoda",
+    "Kirulapana",
+    "Kohuwala",
+    "Kollupitiya",
+    "Kolonnawa",
+    "Koswatte",
+    "Kotahena",
+    "Kotikawatta",
+    "Kottawa",
+    "Madampitiya",
+    "Maha Nuge Gardens",
+    "Maharagama",
+    "Malabe",
+    "Maligawatta",
+    "Maradana",
+    "Mattakkuliya",
+    "Modara",
+    "Moratuwa",
+    "Mount Lavinia",
+    "Narahenpita",
+    "Nawala",
+    "Nugegoda",
+    "Wellawatte"
+  ];
+
   List data;
 
   Future<String> loadJsonData() async {
@@ -41,11 +89,11 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
   Widget startInput() {
     return Card(
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(5.0),
           side: BorderSide(color: Colors.grey, width: 1.0)),
-      margin: EdgeInsets.all(20.0),
+      margin: EdgeInsets.all(5.0),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: <Widget>[
             SearchChoices.single(
@@ -79,11 +127,11 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
   Widget endInput() {
     return Card(
       shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(5.0),
           side: BorderSide(color: Colors.grey, width: 1.0)),
-      margin: EdgeInsets.all(20.0),
+      margin: EdgeInsets.all(5.0),
       child: Padding(
-        padding: const EdgeInsets.all(20.0),
+        padding: const EdgeInsets.all(10.0),
         child: Column(
           children: <Widget>[
             SearchChoices.single(
@@ -110,22 +158,24 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
 
   Widget searchButton() {
     return ElevatedButton.icon(
-        onPressed: () {
-          if (!(this.searchResults.length > 1)) {
-            data.forEach((element) {
-              print(start);
-              print(end);
+        onPressed: this.start == null && this.end == null
+            ? null
+            : () {
+                if (!(this.searchResults.length > 1)) {
+                  data.forEach((element) {
+                    print(start);
+                    print(end);
 
-              if (element['places'].contains(this.start) &&
-                  element['places'].contains(this.end)) {
-                setState(() {
-                  this.searchResults.add(element);
-                });
-              }
-            });
-          }
-          print(this.searchResults.length.toString());
-        },
+                    if (element['places'].contains(this.start) &&
+                        element['places'].contains(this.end)) {
+                      setState(() {
+                        this.searchResults.add(element);
+                      });
+                    }
+                  });
+                }
+                print(this.searchResults.length.toString());
+              },
         icon: Icon(Icons.search_outlined),
         label: Text("FIND BUS ROUTES"));
   }
@@ -133,10 +183,13 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
   Widget resultList() {
     return Visibility(
         visible: this.searchResults.length > 0,
-        child: SingleChildScrollView(
-          child: Column(
-            children: listOfResults(),
-          ),
+        child: Flexible(
+          child: ListView(children: listOfResults()
+
+              // [Column(
+              //   children: listOfResults(),
+              // )],
+              ),
         ));
   }
 
@@ -153,9 +206,12 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
           ),
           startInput(),
           endInput(),
-          searchButton(),
           SizedBox(
             height: 15,
+          ),
+          searchButton(),
+          SizedBox(
+            height: 5,
           ),
           resultList(),
         ],
@@ -176,15 +232,13 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
             icon: Icon(Icons.info),
             label: Text("DETAILS"),
             onPressed: () {
-              {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                      builder: (context) => TabBarDemo(
-                            routeNumber: element['routeNumber'],
-                          )),
-                );
-              }
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                    builder: (context) => TabBarDemo(
+                          routeNumber: element['routeNumber'],
+                        )),
+              );
             },
           ),
         ));
