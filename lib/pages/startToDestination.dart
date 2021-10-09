@@ -235,7 +235,7 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => TabBarDemo(
+                    builder: (context) => RouteDetailPage(
                           routeNumber: element['routeNumber'],
                         )),
               );

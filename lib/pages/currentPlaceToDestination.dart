@@ -245,7 +245,7 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                      builder: (context) => TabBarDemo(
+                      builder: (context) => RouteDetailPage(
                             routeNumber: element['routeNumber'],
                           )),
                 );
