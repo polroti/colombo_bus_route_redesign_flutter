@@ -149,7 +149,7 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Route Details"),
+          title: Text("Route Details".toUpperCase()),
         ),
         body: Column(
           children: [

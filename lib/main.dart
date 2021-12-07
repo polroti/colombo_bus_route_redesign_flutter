@@ -14,8 +14,16 @@ class ColomboBusRouteApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+          bottomNavigationBarTheme: BottomNavigationBarThemeData(
+              selectedItemColor: Colors.lightBlue.shade900,
+              selectedIconTheme:
+                  IconThemeData(color: Colors.lightBlue.shade900)),
+          primarySwatch: Colors.lightBlue,
+          iconTheme: IconThemeData(color: Colors.lightBlue.shade900),
+          appBarTheme: AppBarTheme(
+              titleTextStyle: TextStyle(
+                  color: Colors.white, fontSize: 20, fontFamily: 'Ubuntu'),
+              color: Colors.lightBlue.shade900)),
       home: BottomNavigationContainer(),
     );
   }
