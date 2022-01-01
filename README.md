@@ -1,6 +1,6 @@
-# colombo_bus_route_redesign_flutter
+# Colombo Bus Route Redesign
 
-A new Flutter project.
+A Redesign application for ColomboBusRoute Android application
 
 ## Getting Started
 

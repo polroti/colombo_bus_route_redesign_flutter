@@ -109,8 +109,8 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
           title: new Text("Location"),
           content: new Text("Allow this app to access location?"),
           actions: <Widget>[
-            FlatButton(
-              textColor: Color(0xFF6200EE),
+            TextButton(
+              style: TextButton.styleFrom(primary: Colors.red.shade900),
               onPressed: () {
                 setState(() {
                   this.locationPermissionStatus = false;
@@ -120,8 +120,8 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
               },
               child: Text('DENY'),
             ),
-            FlatButton(
-              textColor: Color(0xFF6200EE),
+            TextButton(
+              style: TextButton.styleFrom(primary: Colors.lightBlue.shade900),
               onPressed: () {
                 setState(() {
                   this.start = "Wellawatte";
@@ -149,7 +149,7 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          title: Text("Route Details".toUpperCase()),
+          title: Text("From your location".toUpperCase()),
         ),
         body: Column(
           children: [
@@ -166,23 +166,7 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
                   SizedBox(
                     height: 30,
                   ),
-                  SearchChoices.single(
-                      isExpanded: true,
-                      items: destinations.map((e) {
-                        return (DropdownMenuItem(
-                          child: Text(e),
-                          value: e,
-                        ));
-                      }).toList(),
-                      hint: "End Stop",
-                      value:
-                          this.end == "" || this.end == null ? "End" : this.end,
-                      searchHint: "End",
-                      onChanged: (value) {
-                        setState(() {
-                          this.end = value.toString();
-                        });
-                      }),
+                  searchChoicesSingle(),
                   ElevatedButton.icon(
                       onPressed: this.start == null && this.end == null
                           ? null
@@ -222,10 +206,26 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
                 ),
                 visible: !locationPermissionStatus)
           ],
-        )
+        ));
+  }
 
-        // This trailing comma makes auto-formatting nicer for build methods.
-        );
+  Widget searchChoicesSingle() {
+    return SearchChoices.single(
+        isExpanded: true,
+        items: destinations.map((e) {
+          return (DropdownMenuItem(
+            child: Text(e),
+            value: e,
+          ));
+        }).toList(),
+        hint: "End Stop",
+        value: this.end == "" || this.end == null ? "End" : this.end,
+        searchHint: "End",
+        onChanged: (value) {
+          setState(() {
+            this.end = value.toString();
+          });
+        });
   }
 
   List<Widget> listOfResults() {
@@ -238,7 +238,12 @@ class _CurrentPlaceToDestinationState extends State<CurrentPlaceToDestination> {
           title: Text(element['routeNumber']),
           subtitle: Text(element['routeName']),
           trailing: ElevatedButton.icon(
-            icon: Icon(Icons.info),
+            style: ElevatedButton.styleFrom(
+                primary: Theme.of(context).primaryColor),
+            icon: Icon(
+              Icons.info,
+              color: Colors.white,
+            ),
             label: Text("DETAILS"),
             onPressed: () {
               {
