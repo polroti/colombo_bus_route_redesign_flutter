@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:colombo_bus_route_redesign_flutter/data/destinations.dart';
+import 'package:colombo_bus_route_redesign_flutter/widgets/Text.dart';
 import 'package:search_choices/search_choices.dart';
 
 import 'package:colombo_bus_route_redesign_flutter/pages/routeDetails.dart';
@@ -177,19 +178,14 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
                 print(this.searchResults.length.toString());
               },
         icon: Icon(Icons.search_outlined),
-        label: Text("FIND BUS ROUTES"));
+        label: TextWidgetCustomUppercase("FIND BUS ROUTES"));
   }
 
   Widget resultList() {
     return Visibility(
         visible: this.searchResults.length > 0,
         child: Flexible(
-          child: ListView(children: listOfResults()
-
-              // [Column(
-              //   children: listOfResults(),
-              // )],
-              ),
+          child: ListView(children: listOfResults()),
         ));
   }
 
@@ -197,7 +193,7 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Find Bus Route"),
+        title: TextWidgetCustomUppercase("Find Bus Route"),
       ),
       body: Column(
         children: <Widget>[
@@ -230,7 +226,7 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
           subtitle: Text(element['routeName']),
           trailing: ElevatedButton.icon(
             icon: Icon(Icons.info),
-            label: Text("DETAILS"),
+            label: TextWidgetCustomUppercase("Details"),
             onPressed: () {
               Navigator.push(
                 context,
@@ -244,7 +240,7 @@ class _StartToDestinationPageState extends State<StartToDestinationPage> {
         ));
       });
     } else {
-      widgetList.add(Text("Sorry machan mokuth na"));
+      widgetList.add(TextWidgetCustom("No Results Found"));
     }
 
     return widgetList.toList();
